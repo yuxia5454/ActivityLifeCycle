@@ -3,6 +3,7 @@ package com.example.administrator.lifecycle;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -105,5 +106,20 @@ public class MainActivity extends Activity {
         param = savedInstanceState.getInt("param");
         Log.i(TAG, "onRestoreInstanceState called. get param: " + param);
         super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    //当指定了android:configChanges="orientation"后,方向改变时onConfigurationChanged被调用
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(TAG, "onConfigurationChanged called.");
+        switch (newConfig.orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+//                setContentView(R.layout.orientation_portrait);
+                break;
+            case Configuration.ORIENTATION_LANDSCAPE:
+//                setContentView(R.layout.orientation_landscape);
+                break;
+        }
     }
 }
